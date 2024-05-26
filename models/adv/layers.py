@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 class CauchyNoiseLayer(tf.keras.layers.Layer):
-    def __init__(self, amplify: float, epsilon: float, clip=(0, 1)):
+    def __init__(self, amplify: float, epsilon: float, clip=(0, 1), **kwargs):
         super(CauchyNoiseLayer, self).__init__()
         self.clip = clip
         self.amplify = amplify
@@ -25,7 +25,7 @@ class CauchyNoiseLayer(tf.keras.layers.Layer):
             )
 
 class NormalNoiseLayer(tf.keras.layers.Layer):
-    def __init__(self, mean: float, stddev: float, epsilon: float, clip=(0, 1)):
+    def __init__(self, mean: float, stddev: float, epsilon: float, clip=(0, 1), **kwargs):
         super(NormalNoiseLayer, self).__init__()
         self.clip = clip
         self.mean = mean
@@ -49,7 +49,7 @@ class NormalNoiseLayer(tf.keras.layers.Layer):
         return tf.clip_by_value(inputs + noise, self.clip[0], self.clip[1])
 
 class UniformNoiseLayer(tf.keras.layers.Layer):
-    def __init__(self, minval: float, maxval: float, epsilon: float, clip=(0, 1)):
+    def __init__(self, minval: float, maxval: float, epsilon: float, clip=(0, 1), **kwargs):
         super(UniformNoiseLayer, self).__init__()
         self.clip = clip
         self.minval = minval
